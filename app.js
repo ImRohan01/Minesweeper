@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',() => {
     const bombsArray    = Array(bombsAmount).fill('bomb')
     const emptyArray    = Array(width*width - bombsAmount).fill('valid')
     const gameArray     = emptyArray.concat(bombsArray)
-    const shuffledArray = gameArray.sort(() => Math.random() -0.5)
+    const shuffledArray = gameArray.sort(() => Math.random() - 0.5)
 
     for(let i=0; i<width*width; i++){
       const square = document.createElement('div');
@@ -103,10 +103,12 @@ document.addEventListener('DOMContentLoaded',() => {
       if(total!=0){
         square.classList.add('checked');
         square.innerHTML = total;
+        square.style.borderColor = '#7e8082 #a8a4a3 #a8a4a3 #7e8082';
         return;
       }
       checkSquare(square,currentId)
       square.classList.add('checked')
+      square.style.borderColor = '#7e8082 #a8a4a3 #a8a4a3 #7e8082'
     }
   }
 

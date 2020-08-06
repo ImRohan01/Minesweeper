@@ -1,20 +1,58 @@
+*{
+  padding:0;
+  margin:0;
+}
+body {
+  font-family: 'Press Start 2P', cursive;
+  background-color: black;
+  color: grey;
+}
+
+header{
+  /* background-image: linear-gradient(120deg, red, yellow); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-text-stroke: 3px red;
+  min-height: 18vh;
+  font-size: 1.5rem;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .grid {
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 500px;
   display: flex;
   flex-wrap: wrap;
-  background-color: grey;
+  border: 5px solid;
+  border-color: #b8c4d9 #8c929c #8c929c #b8c4d9;
+  background-color: #acb3bf;
+  justify-content: center;
 }
 
-.grid div{
+.grid div {
+  display: flex;
   height: 40px;
   width: 40px;
+  color: black;
+  border: 5px solid;
+  border-color: #b8c4d9 #8c929c #8c929c #b8c4d9;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
-.checked {
-  background-color: red;
+.checked{
+  background-color: #a6a2a1;
+  align-items: center;
+  justify-content: center;
 }
 
 .bomb {
-  background-color: orange;
+  align-items: center;
+  justify-content: center;
 }
