@@ -2,6 +2,13 @@
 //If you add it within the body then you need not embed your code within the DOMContentLoaded Listener
 document.addEventListener('DOMContentLoaded',() => {
   const grid = document.querySelector('.grid');
+  const flag = document.querySelector('.flags');
+  const reset = document.querySelector('.reset');
+  const head = document.querySelector('.head');
+  const mySound = new sound("game-over-sound-effect.mp3")
+  const myWin = new sound("Positive-game-notification.mp3")
+  const gameLoop = new sound("music-loop-for-retro-style-video-games.mp3")
+
   let width = 10;
   let bombsAmount = 20;
   let squares = [];
@@ -13,6 +20,11 @@ document.addEventListener('DOMContentLoaded',() => {
     const emptyArray    = Array(width*width - bombsAmount).fill('valid')
     const gameArray     = emptyArray.concat(bombsArray)
     const shuffledArray = gameArray.sort(() => Math.random() - 0.5)
+
+    reset.addEventListener('click',function(e){
+      resetBoard()
+    })
+
 
     for(let i=0; i<width*width; i++){
       const square = document.createElement('div');
@@ -77,21 +89,32 @@ document.addEventListener('DOMContentLoaded',() => {
         square.classList.add('flag');
         square.innerHTML = '&#128681';
         flags++;
+        flag.innerText = "FLAGS:" + flags;
         checkForWin()
       }
       else{
         square.classList.remove('flag')
         square.innerHTML = "";
         flags--;
+        flag.innerText = "FLAGS:" + flags;
       }
     }
+    else if(!square.classList.contains("checked") && flags == bombsAmount){
+      if(square.classList.contains("flag")){
+        square.classList.remove('flag')
+        square.innerHTML = "";
+        flags--;
+        flag.innerText = "FLAGS:" + flags;
+    }
   }
+}
 
   function click(square){
     let currentId = square.id
     if(isGameOver){
        return;
     }
+    gameLoop.play()
     if(square.classList.contains("checked") || square.classList.contains("flag")){
       return;
     }
@@ -168,6 +191,9 @@ document.addEventListener('DOMContentLoaded',() => {
         square.innerHTML = "&#128163;"
       }
     })
+    head.innerHTML = "YOU LOST!";
+    gameLoop.stop();
+    mySound.play();
   }
 
   //check for win
@@ -179,11 +205,34 @@ document.addEventListener('DOMContentLoaded',() => {
         matches++;
       }
       if(matches === bombsAmount){
-        console.log("You Win!");
+        head.innerText = "YOU WON!";
+        gameLoop.stop();
+        myWin.play();
         isGameOver = true;
       }
     }
   }
+
+  function resetBoard(){
+    location.reload()
+  }
+
+  function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
+}
+
+
   // Initializing the game
   createBoard()
 })

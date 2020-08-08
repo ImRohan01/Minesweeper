@@ -4,18 +4,53 @@
 }
 body {
   font-family: 'Press Start 2P', cursive;
-  background-color: black;
+  background-image:linear-gradient(black,white,grey);
   color: grey;
+  height: 100vh;
+  width: 100vw;
 }
 
-header{
-  /* background-image: linear-gradient(120deg, red, yellow); */
-  display: flex;
+header {
+  display:flex;
+  justify-content:space-between;
   align-items: center;
-  justify-content: center;
-  -webkit-text-stroke: 3px red;
   min-height: 18vh;
+  margin-left: 50px;
+  margin-right: 50px
+}
+
+.head{
+  color:rgb(148, 148, 148);
+  text-shadow: 3px 3px 1px #fff;
+  -webkit-text-stroke: 2px rgb(255, 255, 255);
+  display: flex;
+  font-size: 3rem;
+}
+
+.flags {
+  color: grey;
+  text-shadow: 1px 1px 1px #fff;
+  -webkit-text-stroke: 1px rgb(255, 255, 255);
   font-size: 1.5rem;
+  margin-bottom: 5px;
+  transform: scale(1, 1.8);
+}
+
+.reset {
+  font-family: 'Press Start 2P', cursive;
+  color: black;
+  height: 3.5rem;
+  width: 10rem;
+  font-size: 1.5rem;
+  background-color: white;
+  box-shadow:3px 3px 1px grey;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.reset:hover{
+  background:black;
+  color: white;
 }
 
 .main {
